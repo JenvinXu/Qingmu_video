@@ -1,0 +1,9 @@
+node_modules/
+vendor/
+data/
+dist/
+release/
+build/
+build-resources/
+.venv/
+.local/

@@ -1,0 +1,91 @@
+{
+  "name": "lime-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "青幕 · 本地 AI 视频创作工作台",
+  "author": "JenvinXu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JenvinXu/Qingmu_video.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JenvinXu/Qingmu_video/issues"
+  },
+  "homepage": "https://github.com/JenvinXu/Qingmu_video#readme",
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  },
+  "main": "dist/desktop/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/build-node.mjs",
+    "start": "electron .",
+    "test:agent": "node --import tsx --test tests/agent.test.ts",
+    "test:backend": ".venv\\Scripts\\python.exe -m pytest backend/tests -q",
+    "accept": ".venv\\Scripts\\python.exe scripts/accept.py",
+    "package": "node scripts/package.mjs"
+  },
+  "devDependencies": {
+    "@openai/codex": "0.155.0-alpha.16",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "electron": "41.10.7",
+    "electron-builder": "^26.8.1",
+    "esbuild": "0.28.2",
+    "lucide-react": "^0.577.0",
+    "prettier": "3.6.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0"
+  },
+  "build": {
+    "appId": "cn.limestudio.desktop",
+    "productName": "青幕 Lime Studio",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "electronDist": "node_modules/electron/dist",
+    "extraResources": [
+      {
+        "from": "build-resources/backend",
+        "to": "backend"
+      },
+      {
+        "from": "build-resources/media",
+        "to": "media"
+      },
+      {
+        "from": "build-resources/codex",
+        "to": "codex"
+      },
+      {
+        "from": "agent-skills",
+        "to": "agent-skills"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "dir"
+      ],
+      "icon": "apps/desktop/assets/icon.ico",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}

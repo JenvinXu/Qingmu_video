@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/openai/codex",
+  "checked_at": "2026-09-17",
+  "main_commit": "b0659c53865dd48b0cd69c454368cea3980017cc",
+  "runtime": "0.155.0-alpha.16",
+  "runtime_tag": "rust-v0.155.0-alpha.16",
+  "runtime_commit": "c36696937921f6f2d364ebeefcb66bc5cfa638e8",
+  "note": "使用核实当日最新官方预发布二进制。main 源码仅用于核对协议；运行版本对应 tag 的源码，不声称编译了 main。",
+  "transport": "stdio JSON-RPC",
+  "provider": "Responses API"
+}
