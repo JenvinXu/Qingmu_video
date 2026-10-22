@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
           cache: pip
@@ -40,6 +40,13 @@ jobs:
           python -m venv .venv
           .venv\Scripts\python.exe -m pip install --upgrade pip
           .venv\Scripts\python.exe -m pip install -r backend\requirements-lock.txt
+
+      - name: Install FFmpeg
+        shell: pwsh
+        run: |
+          choco install ffmpeg --yes --no-progress
+          ffmpeg -version
+          ffprobe -version
 
       - name: Build
         run: npm run build
