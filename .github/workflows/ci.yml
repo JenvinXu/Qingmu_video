@@ -32,6 +32,8 @@ jobs:
           cache-dependency-path: backend/requirements-lock.txt
 
       - name: Install Node dependencies
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
         run: npm ci
 
       - name: Install Python dependencies
